@@ -7,14 +7,14 @@ Task 1:
 """
 import random
 
-"""
+
 print("Task 1 \"Coins\": ")
 number_of_coins = int(input("Enter number of coins: "))
 temp = 0
 eagles = 0
 for i in range(number_of_coins):
     temp = random.randint(0,1)
-    # print(temp, end = ' ') Для проверки
+    # print(temp, end = ' ') для проверки
     if temp == 1:
         eagles += 1
 print()
@@ -22,7 +22,7 @@ if (number_of_coins - eagles > eagles):
     print(f"You need to turn over {eagles} coins!")
 else:
     print(f"You need to turn over {number_of_coins - eagles} coins!")
-"""
+
 
 """
 Task 2: 
@@ -31,7 +31,7 @@ Task 2:
 Для этого Петя делает две подсказки. Он называет сумму этих чисел S и их произведение P. 
 Помогите Кате отгадать задуманные Петей числа.
 """
-"""
+
 print("Task 2 \"Two numbers\": ")
 first_number = int(input("Enter first number = "))
 second_number = int(input("Enter second number = "))
@@ -47,12 +47,13 @@ if first_number <= 1000 and second_number <= 1000:
         i += 1
 else:
     print("You are a little crook!")
-"""
+
 
 """
 Task 3: 
 Задача 14: Требуется вывести все целые степени двойки (т.е. числа вида 2k), не превосходящие числа N.
 """
+
 print("Task 3 \"Degrees of 2\": ")
 input_number = float(input("Enter your number = "))
 if input_number >= 1:
