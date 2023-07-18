@@ -33,20 +33,18 @@ Task 2:
 """
 
 print("Task 2 \"Two numbers\": ")
-first_number = int(input("Enter first number = "))
-second_number = int(input("Enter second number = "))
-if first_number <= 1000 and second_number <= 1000:
-    s = first_number + second_number
-    p = first_number * second_number
-    i = 1
-    anti_duplication = 0
-    while i < s and anti_duplication == 0:
-        if (i * (s - i)) == p:
-            print(f"Your first number = {i}, second number = {s - i} or your first number = {s - i}, second number = {i}")
-            anti_duplication += 1
-        i += 1
-else:
-    print("You are a little crook!")
+sum_numbers = int(input("Enter sum of numbers = "))
+production_numbers = int(input("Enter production of numbers = "))
+solution = 0
+i = 1
+while i < sum_numbers and solution == 0:
+    if (i * (sum_numbers - i)) == production_numbers:
+        print(f"Your first number = {i}, second number = {sum_numbers - i} or "
+              f"your first number = {sum_numbers - i}, second number = {i}")
+        solution += 1
+    i += 1
+if solution == 0:
+    print("Your numbers incorrect! There are no solutions!")
 
 
 """
