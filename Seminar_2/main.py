@@ -7,6 +7,7 @@ Task 1:
 """
 import random
 
+"""
 print("Task 1 \"Coins\": ")
 number_of_coins = int(input("Enter number of coins: "))
 temp = 0
@@ -21,7 +22,28 @@ if (number_of_coins - eagles > eagles):
     print(f"You need to turn over {eagles} coins!")
 else:
     print(f"You need to turn over {number_of_coins - eagles} coins!")
+"""
 
+"""
+Task 2: 
+Задача 12: Петя и Катя – брат и сестра. Петя – студент, а Катя – школьница. 
+Петя помогает Кате по математике. Он задумывает два натуральных числа X и Y (X,Y≤1000), а Катя должна их отгадать. 
+Для этого Петя делает две подсказки. Он называет сумму этих чисел S и их произведение P. 
+Помогите Кате отгадать задуманные Петей числа.
+"""
 
-
-
+print("Task 2 \"Coins\": ")
+x = int(input("Enter first number = "))
+y = int(input("Enter second number = "))
+if x <= 1000 and y <= 1000:
+    s = x + y
+    p = x * y
+    i = 1
+    anti_duplication = 0
+    while i < s and anti_duplication == 0:
+        if (i * (s - i)) == p:
+            print(f"Your first number = {i}, second number = {s - i} or your first number = {s - i}, second number = {i}")
+            anti_duplication += 1
+        i += 1
+else:
+    print("You are a little crook!")
