@@ -36,11 +36,11 @@ Task 2:
 
 print("Task 2 \"Two numbers\": ")
 sum_numbers = int(input("Enter sum of numbers = "))
-production_numbers = int(input("Enter production of numbers = "))
+product_numbers = int(input("Enter product of numbers = "))
 solution = 0
 i = 1
 while i < sum_numbers and solution == 0:
-    if (i * (sum_numbers - i)) == production_numbers:
+    if (i * (sum_numbers - i)) == product_numbers:
         print(f"Your first number = {i}, second number = {sum_numbers - i} or "
               f"your first number = {sum_numbers - i}, second number = {i}")
         solution += 1
