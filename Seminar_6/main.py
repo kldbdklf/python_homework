@@ -1,17 +1,17 @@
-import random
 # Task 1:
 # Задача 30:  Заполните массив элементами арифметической прогрессии.
 # Её первый элемент, разность и количество элементов нужно ввести с клавиатуры.
 # Формула для получения n-го члена прогрессии: an = a1 + (n-1) * d.
-#
+
+import random
 print("Task 1 Arithmetic progression:")
 a = int(input('Enter first element (a): '))
 n = int(input('Enter amount of numbers (n): '))
 d = int(input('Enter difference (d): '))
-list_res = []
+res_list1 = []
 for i in range (n):
-    list_res.append(a + (i) * d)
-print (list_res)
+    res_list1.append(a + (i) * d)
+print (res_list1)
 
 # Task 2:
 # Задача 32: Определить индексы элементов массива (списка), значения которых принадлежат заданному диапазону
