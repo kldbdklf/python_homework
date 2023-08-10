@@ -14,26 +14,59 @@
 #     **Вывод:** Парам пам-пам
 
 
-print('Task 1 Winnie the Pooh:')
-VOWELS = 'ауоыиэяюёе'
-Alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя- '
-def Calculate_rhythm (song):
-    rhythm = sum([1 for item in song[0] if item in VOWELS])
-    for i in song:
-        number_vowels = 0
-        for j in i:
-            if j in VOWELS:
-                number_vowels += 1
-        if number_vowels != rhythm:
-            return False
-    return True
-song = input('Enter song: ')
-song = song.lower()
-if len([0 for item in song if item not in Alphabet]) == 0:
-    song = song.split()
-    if Calculate_rhythm(song):
-        print('Парам пам-пам')
-    else:
-        print('Пам парам')
-else:
-    print('Your song must be in Russian')
+# print('Task 1 Winnie the Pooh:')
+# VOWELS = 'ауоыиэяюёе'
+# Alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя- '
+# def Calculate_rhythm (song):
+#     rhythm = sum([1 for item in song[0] if item in VOWELS])
+#     for i in song:
+#         number_vowels = 0
+#         for j in i:
+#             if j in VOWELS:
+#                 number_vowels += 1
+#         if number_vowels != rhythm:
+#             return False
+#     return True
+# song = input('Enter song: ')
+# song = song.lower()
+# if len([0 for item in song if item not in Alphabet]) == 0:
+#     song = song.split()
+#     if Calculate_rhythm(song):
+#         print('Парам пам-пам')
+#     else:
+#         print('Пам парам')
+# else:
+#     print('Your song must be in Russian')
+
+
+# Task 2:
+# Задача 36: Напишите функцию print_operation_table(operation, num_rows=6, num_columns=6),
+# которая принимает в качестве аргумента функцию, вычисляющую элемент по номеру строки и столбца.
+# Аргументы num_rows и num_columns указывают число строк и столбцов таблицы, которые должны быть распечатаны.
+# Нумерация строк и столбцов идет с единицы (подумайте, почему не с нуля).
+# Примечание: бинарной операцией называется любая операция, у которой ровно два аргумента, как, например,
+# у операции умножения.
+#
+# *Пример:*
+#
+# **Ввод:** `print_operation_table(lambda x, y: x * y) `
+# **Вывод:**
+# 1 2 3 4 5 6
+#
+# 2 4 6 8 10 12
+# 3 6 9 12 15 18
+# 4 8 12 16 20 24
+# 5 10 15 20 25 30
+# 6 12 18 24 30 36
+
+
+
+
+print('Task 2 Table:')
+def print_operation_table(operation, num_rows=6, num_columns=6):
+    for i in range(1, num_rows+1):
+        for j in range(1, num_columns + 1):
+            print (operation(i,j), end = ' ')
+        print()
+print_operation_table(lambda x,y: x * y)
+
