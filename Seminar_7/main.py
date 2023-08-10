@@ -14,29 +14,30 @@
 #     **Вывод:** Парам пам-пам
 
 
-# print('Task 1 Winnie the Pooh:')
-# VOWELS = 'ауоыиэяюёе'
-# Alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя- '
-# def Calculate_rhythm (song):
-#     rhythm = sum([1 for item in song[0] if item in VOWELS])
-#     for i in song:
-#         number_vowels = 0
-#         for j in i:
-#             if j in VOWELS:
-#                 number_vowels += 1
-#         if number_vowels != rhythm:
-#             return False
-#     return True
-# song = input('Enter song: ')
-# song = song.lower()
-# if len([0 for item in song if item not in Alphabet]) == 0:
-#     song = song.split()
-#     if Calculate_rhythm(song):
-#         print('Парам пам-пам')
-#     else:
-#         print('Пам парам')
-# else:
-#     print('Your song must be in Russian')
+print('Task 1 Winnie the Pooh:')
+VOWELS = 'ауоыиэяюёе'
+Alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя- '
+def Calculate_rhythm (song):
+    rhythm = sum([1 for item in song[0] if item in VOWELS])
+    for i in song:
+        number_vowels = 0
+        for j in i:
+            if j in VOWELS:
+                number_vowels += 1
+        if number_vowels != rhythm:
+            return False
+    return True
+song = input('Enter song: ')
+song = song.lower()
+if len([0 for item in song if item not in Alphabet]) == 0:
+    song = song.split()
+    if Calculate_rhythm(song):
+        print('Парам пам-пам')
+    else:
+        print('Пам парам')
+else:
+    print('Your song must be in Russian')
+print()
 
 
 # Task 2:
