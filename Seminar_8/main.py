@@ -96,7 +96,7 @@ def main():
             search_key = input('Введите имя или фамилию контакта, который должен быть удален: ')
             phonebook = delete_one_contact(phonebook, search_key)
             save_to_file(filename, phonebook)
-        # elif choice == '7':
+        elif choice == '7':
 
         elif choice == '8':
             break
