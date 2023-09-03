@@ -1,3 +1,56 @@
+def load_file(filename):
+    phonebook = []
+    with open(filename, 'r') as file:
+        for contact in file:
+            last_name, first_name, middle_name, phone_number = contact.split(' ')
+            phonebook.append({'last_name': last_name,
+                              'first_name': first_name,
+                              'middle_name': middle_name,
+                              'phone_number': phone_number})
+    return phonebook
+def add_contact(phonebook):
+    contact = {
+        'last_name': input('Введите фамилию: '),
+        'first_name': input('Введите имя: '),
+        'middle_name': input('Введите отчество: '),
+        'phone_number': f"{input('Введите номер: ')}\n"
+    }
+    phonebook.append(contact)
+    print("Контакт добавлен.")
+def save_to_file(filename, phonebook):
+    with open(filename, 'w') as file:
+        for contact in phonebook:
+            file.write(f"{contact['last_name']} {contact['first_name']} {contact['middle_name']} {contact['phone_number']}")
+    print ("Данные сохранены.")
+def show_all_contacts(phonebook):
+    if len(phonebook) > 0:
+        for index, contact in enumerate(phonebook, start=1):
+            print(f"{index}. {contact['last_name']} {contact['first_name']} {contact['middle_name']} {contact['phone_number']}", end =' ')
+    else:
+        print('Нет ни одного контакта.')
+def search_contact(phonebook, search_key):
+    results = []
+    for contact in phonebook:
+        if search_key.lower() in contact['last_name'].lower() or search_key.lower() in contact['first_name'].lower():
+            results.append(contact)
+    if not results:
+        print('Контакт не найден.')
+    return results
+def delete_one_contact(phonebook, search_key):
+    deleting_contact = find_desired_contact(phonebook, search_key)
+    if deleting_contact:
+        print('Контакт {')
+        show_all_contacts([deleting_contact])
+        print('} будет удален.')
+        choice = input('Вы уверены (Да/Нет): ')
+        if choice == 'Да':
+            phonebook.remove(deleting_contact)
+            print(f'Контакт был успешно удален')
+        else:
+            print('Повторите выбор команды.')
+    else:
+        print('Удаление невозможно, т.к. такого контакта нет в телефонной книге.')
+    return phonebook
 def find_desired_contact(phonebook, search_key):
     matches = search_contact(phonebook, search_key)
     desired_contact = None
@@ -55,59 +108,6 @@ def change_contact (phonebook, search_key):
     else:
         print('Изменение невозможно, т.к. такого контакта нет в телефонной книге.')
     return phonebook
-def delete_one_contact(phonebook, search_key):
-    deleting_contact = find_desired_contact(phonebook, search_key)
-    if deleting_contact:
-        print('Контакт {')
-        show_all_contacts([deleting_contact])
-        print('} будет удален.')
-        choice = input('Вы уверены (Да/Нет): ')
-        if choice == 'Да':
-            phonebook.remove(deleting_contact)
-            print(f'Контакт был успешно удален')
-        else:
-            print('Повторите выбор команды.')
-    else:
-        print('Удаление невозможно, т.к. такого контакта нет в телефонной книге.')
-    return phonebook
-def search_contact(phonebook, search_key):
-    results = []
-    for contact in phonebook:
-        if search_key.lower() in contact['last_name'].lower() or search_key.lower() in contact['first_name'].lower():
-            results.append(contact)
-    if not results:
-        print('Контакт не найден.')
-    return results
-def load_file(filename):
-    phonebook = []
-    with open(filename, 'r') as file:
-        for contact in file:
-            last_name, first_name, middle_name, phone_number = contact.split(' ')
-            phonebook.append({'last_name': last_name,
-                              'first_name': first_name,
-                              'middle_name': middle_name,
-                              'phone_number': phone_number})
-    return phonebook
-def delete_all_contacts(filename, phonebook):
-    open(filename, 'w').close()
-    return phonebook.clear()
-def show_all_contacts(phonebook):
-    for index, contact in enumerate(phonebook, start=1):
-        print(f"{index}. {contact['last_name']} {contact['first_name']} {contact['middle_name']} {contact['phone_number']}", end =' ')
-def save_to_file(filename, phonebook):
-    with open(filename, 'w') as file:
-        for contact in phonebook:
-            file.write(f"{contact['last_name']} {contact['first_name']} {contact['middle_name']} {contact['phone_number']}")
-    print ("Данные сохранены.")
-def add_contact(phonebook):
-    contact = {
-        'last_name': input('Введите фамилию: '),
-        'first_name': input('Введите имя: '),
-        'middle_name': input('Введите отчество: '),
-        'phone_number': f"{input('Введите номер: ')}\n"
-    }
-    phonebook.append(contact)
-    print("Контакт добавлен.")
 def get_users_command(filename, phonebook):
     while True:
         print('Список команд:')
@@ -115,10 +115,9 @@ def get_users_command(filename, phonebook):
         print('2. Сохранить файл.')
         print('3. Вывести все контакты.')
         print('4. Поиск по имени/фамилии.')
-        print('5. Удалить все контакты.')
-        print('6. Удалить отдельный контакт.')
-        print('7. Изменить контакт.')
-        print('8. Выход.')
+        print('5. Удалить отдельный контакт.')
+        print('6. Изменить контакт.')
+        print('7. Выход.')
         choice = input('Введите номер команды: ')
         match choice:
             case '1':
@@ -133,21 +132,14 @@ def get_users_command(filename, phonebook):
                 print('Совпадения: ')
                 show_all_contacts(matches)
             case '5':
-                print('Вы уверены, что хотите безвозвратно удалить все контакты?')
-                choice = input('Да/Нет:')
-                if choice == 'Да':
-                    phonebook = delete_all_contacts(filename, phonebook)
-                else:
-                    print('Повторите выбор команды.')
-            case '6':
                 search_key = input('Введите имя или фамилию контакта, который должен быть удален: ')
                 phonebook = delete_one_contact(phonebook, search_key)
                 save_to_file(filename, phonebook)
-            case '7':
+            case '6':
                 search_key = input('Введите имя или фамилию контакта, который должен быть изменен: ')
                 phonebook = change_contact(phonebook, search_key)
                 save_to_file(filename, phonebook)
-            case '8':
+            case '7':
                 break
             case _:
                 print('Вы ввели неверну команду. Пожалуйста повторите ввод.')
@@ -156,6 +148,5 @@ def main():
     phonebook = []
     phonebook = load_file(filename)
     get_users_command(filename, phonebook)
-
 main()
 
